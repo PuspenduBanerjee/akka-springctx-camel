@@ -27,7 +27,7 @@ If you want to use latest artifact from master branch , use the following :
 <dependency>
     <groupId>com.github.PuspenduBanerjee</groupId>
     <artifactId>akka-springctx-camel</artifactId>
-    <version>0.0.1</version>
+    <version>master-SNAPSHOT</version>
 </dependency>
 ```
 
