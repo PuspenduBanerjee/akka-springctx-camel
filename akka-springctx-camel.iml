@@ -45,17 +45,17 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm-analysis:5.0.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm-util:5.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe.akka:akka-camel_2.11:2.4.9" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.camel:camel-core:2.16.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.camel:camel-core:2.17.3" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-core:2.2.11" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.bind:jaxb-impl:2.2.11" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.camel:camel-spring:2.16.3" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-core:4.1.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.camel:camel-spring:2.17.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-core:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.1.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:4.1.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.1.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.1.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.1.9.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:4.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.2.5.RELEASE" level="project" />
   </component>
 </module>
