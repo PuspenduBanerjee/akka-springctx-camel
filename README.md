@@ -35,3 +35,5 @@ Get hold of ActorSystem :
 ```scala
       implicit val system = SpringContextActorSystemProvider.create
 ```
+
+Reference Project: https://github.com/PuspenduBanerjee/ScalaAkkaBlah
