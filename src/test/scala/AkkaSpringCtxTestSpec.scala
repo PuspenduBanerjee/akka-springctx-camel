@@ -11,11 +11,12 @@ import akka.pattern._
 import system.SpringContextActorSystemProvider
 
 import scala.concurrent.duration._
+import scala.reflect.ClassTag
 
 /**
   * Created by puspendu on 9/6/16.
   */
-class AkkaSpringCtxTestSpec extends TestKit(SpringContextActorSystemProvider.create)
+class AkkaSpringCtxTestSpec extends TestKit(SpringContextActorSystemProvider.create())
  with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll{
 
   override def afterAll {
