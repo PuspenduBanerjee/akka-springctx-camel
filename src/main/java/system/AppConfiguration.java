@@ -25,19 +25,9 @@ class AppConfiguration {
     @Autowired
     private ApplicationContext applicationContext;
 
-    /**
-     * Actor system singleton for this application.
-     */
-//    @Bean
-//    public ActorSystem actorSystem() {
-//        ActorSystem system = ActorSystem.create("AkkaSpring");
-//        // initialize the application context in the Akka Spring Extension
-//        SpringExtProvider.get(system).initialize(applicationContext);
-//        return system;
-//    }
 
     /**
-     * Actor system singleton for this application.
+     * Actor system prototype for this application.
      */
     @Bean
     @Scope("prototype")
