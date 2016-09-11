@@ -18,7 +18,7 @@ then Add artifact :
 <dependency>
     <groupId>com.github.PuspenduBanerjee</groupId>
     <artifactId>akka-springctx-camel</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.5</version>
 </dependency>
 ```
 
@@ -34,6 +34,20 @@ If you want to use latest artifact from master branch , use the following :
 Get hold of ActorSystem :
 ```scala
       implicit val system = SpringContextActorSystemProvider.create
+```
+
+Supports Multiple ActorSystem under isolated Spring ApplicationContexts, as siblings.
+```scala
+            val actorSystems = 2551 to 2562 map (x => {
+            val as = SpringContextActorSystemProvider.create("ActorSystem" + x,
+              ConfigFactory.parseString("akka.remote.netty.tcp.port=" + x).withFallback(ConfigFactory.load()))
+            val echoActor = as.actorOf(Props[EchoActor])
+            val probe = new TestProbe(as, "probe")
+            val msg = "Hi There"
+            echoActor tell(msg, probe.ref)
+            probe.expectMsg(1000 millis, msg)
+            as
+          })
 ```
 
 Reference Project: https://github.com/PuspenduBanerjee/ScalaAkkaBlah
