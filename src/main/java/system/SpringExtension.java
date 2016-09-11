@@ -35,6 +35,7 @@ public class SpringExtension extends
 
         /**
          * Used to initialize the Spring application context for the extension.
+         *
          * @param applicationContext
          */
         public void initialize(ApplicationContext applicationContext) {
@@ -45,7 +46,7 @@ public class SpringExtension extends
          * Create a Props for the specified actorBeanName using the
          * SpringActorProducer class.
          *
-         * @param actorBeanName  The name of the actor bean to create Props for
+         * @param actorBeanName The name of the actor bean to create Props for
          * @return a Props that will create the named actor bean using Spring
          */
         public Props props(String actorBeanName) {

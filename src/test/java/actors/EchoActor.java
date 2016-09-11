@@ -3,9 +3,9 @@ package actors; /**
  */
 
 import akka.actor.UntypedActor;
+import org.springframework.context.annotation.Scope;
 
 import javax.inject.Named;
-import org.springframework.context.annotation.Scope;
 
 /**
  * An actor that can count using an injected CountingService.
@@ -19,6 +19,6 @@ public class EchoActor extends UntypedActor {
 
     @Override
     public void onReceive(Object message) throws Exception {
-        getSender().tell(message,getSelf());
+        getSender().tell(message, getSelf());
     }
 }

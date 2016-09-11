@@ -4,7 +4,7 @@
     <groupId>com.github.PuspenduBanerjee</groupId>
     <artifactId>akka-springctx-camel</artifactId>
     <version>0.0.3-SNAPSHOT</version>
-    <description>A library to bind akka with spring and any spring supported framework, as camel, cxf etc. </description>
+    <description>A library to bind akka with spring and any spring supported framework, as camel, cxf etc.</description>
     <properties>
         <akka.version>2.4.8</akka.version>
         <scoverage.plugin.version>1.1.1</scoverage.plugin.version>
@@ -13,25 +13,25 @@
         <scala.version>2.11.8</scala.version>
     </properties>
     <!--<reporting>-->
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.scoverage</groupId>-->
-                <!--<artifactId>scoverage-maven-plugin</artifactId>-->
-                <!--<version>${scoverage.plugin.version}</version>-->
-                <!--<configuration>-->
-                    <!--<highlighting>true</highlighting>-->
-                <!--</configuration>-->
-                <!--<reportSets>-->
-                    <!--<reportSet>-->
-                        <!--<reports>-->
-                            <!--<report>report</report>-->
-                            <!--&lt;!&ndash; or <report>integration-report</report> &ndash;&gt;-->
-                            <!--&lt;!&ndash; or <report>report-only</report> &ndash;&gt;-->
-                        <!--</reports>-->
-                    <!--</reportSet>-->
-                <!--</reportSets>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
+    <!--<plugins>-->
+    <!--<plugin>-->
+    <!--<groupId>org.scoverage</groupId>-->
+    <!--<artifactId>scoverage-maven-plugin</artifactId>-->
+    <!--<version>${scoverage.plugin.version}</version>-->
+    <!--<configuration>-->
+    <!--<highlighting>true</highlighting>-->
+    <!--</configuration>-->
+    <!--<reportSets>-->
+    <!--<reportSet>-->
+    <!--<reports>-->
+    <!--<report>report</report>-->
+    <!--&lt;!&ndash; or <report>integration-report</report> &ndash;&gt;-->
+    <!--&lt;!&ndash; or <report>report-only</report> &ndash;&gt;-->
+    <!--</reports>-->
+    <!--</reportSet>-->
+    <!--</reportSets>-->
+    <!--</plugin>-->
+    <!--</plugins>-->
     <!--</reporting>-->
 
 
@@ -91,12 +91,12 @@
             <!--<groupId>org.scoverage</groupId>-->
             <!--<artifactId>scoverage-maven-plugin</artifactId>-->
             <!--<executions>-->
-                <!--<execution>-->
-                    <!--<goals>-->
-                        <!--<goal>report</goal> &lt;!&ndash; or integration-check &ndash;&gt;-->
-                    <!--</goals>-->
-                    <!--<phase>prepare-package</phase> &lt;!&ndash; or any other phase &ndash;&gt;-->
-                <!--</execution>-->
+            <!--<execution>-->
+            <!--<goals>-->
+            <!--<goal>report</goal> &lt;!&ndash; or integration-check &ndash;&gt;-->
+            <!--</goals>-->
+            <!--<phase>prepare-package</phase> &lt;!&ndash; or any other phase &ndash;&gt;-->
+            <!--</execution>-->
             <!--</executions>-->
             <!--</plugin>-->
         </plugins>
@@ -128,9 +128,9 @@
 
         <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.scala-lang.modules/scala-xml_2.11 &ndash;&gt;-->
         <!--<dependency>-->
-            <!--<groupId>org.scala-lang.modules</groupId>-->
-            <!--<artifactId>scala-xml_2.11</artifactId>-->
-            <!--<version>1.0.5</version>-->
+        <!--<groupId>org.scala-lang.modules</groupId>-->
+        <!--<artifactId>scala-xml_2.11</artifactId>-->
+        <!--<version>1.0.5</version>-->
         <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/org.scala-lang.modules/scala-pickling_2.11 -->
         <dependency>

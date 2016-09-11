@@ -2,22 +2,21 @@ package system;
 
 import com.typesafe.config.Config;
 import org.springframework.core.env.PropertySource;
-import org.springframework.util.ReflectionUtils;
 
 /**
  * Created by puspendu on 9/10/16.
  */
 
-public class ActorSystemProperties extends PropertySource{
+public class ActorSystemProperties extends PropertySource {
+    public static final String NAME = "actorSystemName";
+    public static final String CONFIG = "config";
+    private static final String propertySourceName = "actorSystemPropertySource";
     private final String actorSystemName;
     private Config config;
-    public static final String NAME="actorSystemName";
-    public static final String CONFIG ="config";
-    private static final String propertySourceName="actorSystemPropertySource";
 
 
-    private  ActorSystemProperties(String name ){
-        this(name,null,null);
+    private ActorSystemProperties(String name) {
+        this(name, null, null);
     }
 
     public ActorSystemProperties(String name, String actorSystemName, Config config) {
@@ -27,7 +26,7 @@ public class ActorSystemProperties extends PropertySource{
     }
 
     public ActorSystemProperties(String actorSystemName, Config config) {
-        this(propertySourceName,actorSystemName,config);
+        this(propertySourceName, actorSystemName, config);
     }
 
     public String getActorSystemName() {
@@ -41,7 +40,7 @@ public class ActorSystemProperties extends PropertySource{
 
     @Override
     public Object getProperty(String s) {
-        switch (s){
+        switch (s) {
             case CONFIG:
                 return config;
             case NAME:
