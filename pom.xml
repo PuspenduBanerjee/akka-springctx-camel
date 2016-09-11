@@ -6,9 +6,40 @@
     <version>0.0.4</version>
     <description>A library to bind akka with spring and any spring supported framework, as camel, cxf etc.</description>
     <inceptionYear>2016</inceptionYear>
-    <name>akka-springctx-scala-camel</name>
+    <name>akka-springctx-camel</name>
+    <url>https://puspendubanerjee.github.io/akka-springctx-camel</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>puspendu</id>
+            <name>Puspendu Banerjee</name>
+            <email>Puspendu.Banerjee@gmail.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/PuspenduBanerjee/akka-springctx-camel.git</connection>
+        <developerConnection>scm:git:https://github.com/PuspenduBanerjee/akka-springctx-camel</developerConnection>
+        <url>https://github.com/PuspenduBanerjee/akka-springctx-camel</url>
+    </scm>
+
+    <distributionManagement>
+    <snapshotRepository>
+        <id>ossrh</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+        <id>ossrh</id>
+        <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    </distributionManagement>
+
     <properties>
-        <akka.version>2.4.8</akka.version>
+        <akka.version>2.4.9</akka.version>
         <scoverage.plugin.version>1.1.1</scoverage.plugin.version>
         <scoverage.excludedFiles>.*package\.scala</scoverage.excludedFiles>
         <scoverage.excludedPackages>(empty)</scoverage.excludedPackages>
@@ -159,12 +190,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.scala-lang.modules/scala-pickling_2.11 -->
-        <dependency>
-            <groupId>org.scala-lang.modules</groupId>
-            <artifactId>scala-pickling_2.11</artifactId>
-            <version>0.11.0-M2</version>
-        </dependency>
         <!--Test Dependencies-->
         <dependency>
             <groupId>com.typesafe.akka</groupId>
@@ -176,7 +201,7 @@
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_2.11</artifactId>
-            <version>3.0.0-M16-SNAP6</version>
+            <version>3.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -195,7 +220,7 @@
         <dependency>
             <groupId>com.typesafe.akka</groupId>
             <artifactId>akka-camel_2.11</artifactId>
-            <version>2.4.9</version>
+            <version>${akka.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
@@ -208,12 +233,5 @@
             <version>2.17.3</version>
         </dependency>
     </dependencies>
-    <developers>
-        <developer>
-            <id>puspendu</id>
-            <name>Puspendu Banerjee</name>
-            <email>Puspendu.Banerjee@gmail.com</email>
-        </developer>
-    </developers>
 
 </project>
