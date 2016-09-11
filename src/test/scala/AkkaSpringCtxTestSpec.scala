@@ -1,39 +1,41 @@
-import akka.actor.{Actor, ActorRef, ActorSystem, PoisonPill, Props}
-import akka.camel.{CamelMessage, _}
-import akka.testkit.{ImplicitSender, TestActors, TestKit, TestKitBase, TestProbe}
-import com.typesafe.config.ConfigFactory
+import akka.actor.{ActorRef, ActorSystem, Props}
+import akka.camel._
+import akka.testkit.TestActors.EchoActor
+import akka.testkit.{ImplicitSender, TestKit}
+import org.apache.camel.ExchangePattern
 import org.apache.camel.builder.RouteBuilder
 import org.scalatest._
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
-import actors.EchoActor
-import system.SpringExtension._
-import akka.pattern._
 import system.SpringContextActorSystemProvider
-
+import system.SpringExtension._
 import scala.concurrent.duration._
-import scala.reflect.ClassTag
-
 /**
   * Created by puspendu on 9/6/16.
   */
-class AkkaSpringCtxTestSpec extends TestKit(SpringContextActorSystemProvider.create())
- with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll{
+class AkkaSpringCtxTestSpec extends TestKit(SpringContextActorSystemProvider.create("TestAkkaSpring"))
+  with FlatSpecLike
+ with ImplicitSender with Matchers with BeforeAndAfterAll {
 
   override def afterAll {
     TestKit.shutdownActorSystem(system)
   }
 
-  "An Echo actor created as Spring UntypedActor" must {
-    "send back messages unchanged" in {
-      val echoActor=system.actorOf(
-        SpringExtProvider.get(system).props("EchoActor"),"echoActor")
+  "A Spring-Akka Context" should
+    "be able to create Spring UntypedActor[EchoActor] which send back messages unchanged" in {
+      val echoActor = system.actorOf(
+        SpringExtProvider.get(system).props("EchoActor"), "echoActor")
       echoActor ! "hello world"
       expectMsg("hello world")
-      val camel = CamelExtension(system)
-      camel.context.addRoutes(new CustomRouteBuilder(system, echoActor))
+
     }
 
-  }
+    it should "provide a SpringCamelContext where camel endpoint will be able to exchange msg with an actor[EchoActor]" in {
+       val camel = CamelExtension(system)
+       camel.context.addRoutes(new CustomRouteBuilder(system, system.actorOf(Props[EchoActor])))
+         val msg = "Hi There"
+         val response = camel.context.createProducerTemplate().sendBody("direct:testEP", ExchangePattern.InOut, msg)
+         msg should ===(response)
+       }
+
 
 }
 
