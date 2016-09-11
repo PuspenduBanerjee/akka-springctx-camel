@@ -58,6 +58,19 @@ Add repository: </p>
 
 <div class="highlight highlight-source-scala"><pre>      <span class="pl-k">implicit</span> <span class="pl-k">val</span> <span class="pl-en">system</span> <span class="pl-k">=</span> <span class="pl-en">SpringContextActorSystemProvider</span>.create</pre></div>
 
+<p>Supports Multiple ActorSystem under isolated Spring ApplicationContexts, as siblings. </p>
+
+<div class="highlight highlight-source-scala"><pre>      <span class="pl-k">val</span> <span class="pl-en">actorSystems</span> <span class="pl-k">=</span> <span class="pl-c1">2551</span> to <span class="pl-c1">2562</span> map (x <span class="pl-k">=&gt;</span> {
+      <span class="pl-k">val</span> <span class="pl-en">as</span> <span class="pl-k">=</span> <span class="pl-en">SpringContextActorSystemProvider</span>.create(<span class="pl-s"><span class="pl-pds">"</span>ActorSystem<span class="pl-pds">"</span></span> <span class="pl-k">+</span> x,
+        <span class="pl-en">ConfigFactory</span>.parseString(<span class="pl-s"><span class="pl-pds">"</span>akka.remote.netty.tcp.port=<span class="pl-pds">"</span></span> <span class="pl-k">+</span> x).withFallback(<span class="pl-en">ConfigFactory</span>.load()))
+      <span class="pl-k">val</span> <span class="pl-en">echoActor</span> <span class="pl-k">=</span> as.actorOf(<span class="pl-en">Props</span>[<span class="pl-en">EchoActor</span>])
+      <span class="pl-k">val</span> <span class="pl-en">probe</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">TestProbe</span>(as, <span class="pl-s"><span class="pl-pds">"</span>probe<span class="pl-pds">"</span></span>)
+      <span class="pl-k">val</span> <span class="pl-en">msg</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Hi There<span class="pl-pds">"</span></span>
+      echoActor tell(msg, probe.ref)
+      probe.expectMsg(<span class="pl-c1">1000</span> millis, msg)
+      as
+    })</pre></div>
+
 <p>Reference Project: <a href="https://github.com/PuspenduBanerjee/ScalaAkkaBlah">https://github.com/PuspenduBanerjee/ScalaAkkaBlah</a></p>
 
       <footer class="site-footer">
