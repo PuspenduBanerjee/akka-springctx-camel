@@ -7,11 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
 
+import static org.springframework.core.SpringProperties.getProperty;
 import static system.SpringExtension.SpringExtProvider;
 
 /**
@@ -27,13 +26,14 @@ class AppConfiguration {
 
 
     /**
-     * Actor system prototype for this application.
+     * Actor system Singleton per ApplicationContext for this application.
      */
     @Bean
-    @Scope("prototype")
-    public ActorSystem actorSystem(String name, Config config) {
-        ActorSystem system = ActorSystem.create(name, config);
-        // initialize the application context in the Akka Spring Extension
+    public ActorSystem actorSystem(ApplicationContext applicationContext) {
+        Environment environment=applicationContext.getEnvironment();
+        final String name= environment.getProperty(ActorSystemProperties.NAME);
+        final Config config= environment.getProperty(ActorSystemProperties.CONFIG, Config.class);
+        ActorSystem system = ActorSystem.create(name,config);
         SpringExtProvider.get(system).initialize(applicationContext);
         return system;
     }

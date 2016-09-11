@@ -2,7 +2,8 @@ package system
 
 import akka.actor.ActorSystem
 import com.typesafe.config.{Config, ConfigFactory}
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
+import org.springframework.context.annotation.{AnnotationConfigApplicationContext, PropertySource}
+import org.springframework.context.support.GenericApplicationContext
 
 import scala.reflect.ClassTag
 
@@ -12,18 +13,16 @@ import scala.reflect.ClassTag
  */
 
 object SpringContextActorSystemProvider{
+    val rootContext= new GenericApplicationContext()
+    rootContext.refresh()
     def create(name:String="AkkaSpring", config:Config=ConfigFactory.load)={
         val ctx = new AnnotationConfigApplicationContext()
+        ctx.setParent(rootContext)
+        val propertySource =new ActorSystemProperties(name,config);
+        ctx.getEnvironment.getPropertySources.addLast(propertySource)
         ctx.scan("system","actors")
         ctx.refresh()
-        ctx.getBean(classOf[ActorSystem],name,config)
+        ctx.getBean(classOf[ActorSystem])
     }
-
-//    def createPrototypeActorSystem={
-//        val ctx = new AnnotationConfigApplicationContext()
-//        ctx.scan("system","actors")
-//        ctx.refresh()
-//        ctx.getBean(classOf[PrototypeActorSystem],name,config)
-//    }
 
 }
