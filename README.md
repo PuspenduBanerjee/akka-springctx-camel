@@ -1,6 +1,7 @@
 # akka-springctx-camel
 A library to bind akka on scala or java with spring and any spring supported framework, as camel, cxf etc. 
-#[ ![Codeship Status for PuspenduBanerjee/akka-springctx-camel](https://codeship.com/projects/bc619870-56ed-0134-7219-02458a2e1ff4/status?branch=master)](https://codeship.com/projects/172426)
+
+[ ![Codeship Status for PuspenduBanerjee/akka-springctx-camel](https://codeship.com/projects/bc619870-56ed-0134-7219-02458a2e1ff4/status?branch=master)](https://codeship.com/projects/172426) [ ![License](http://img.shields.io/:license-Apache%202-green.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 It's simple to use this library:
 Add repository: 
