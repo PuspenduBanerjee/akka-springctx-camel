@@ -5,6 +5,8 @@
     <artifactId>akka-springctx-camel</artifactId>
     <version>0.0.3-SNAPSHOT</version>
     <description>A library to bind akka with spring and any spring supported framework, as camel, cxf etc.</description>
+    <inceptionYear>2016</inceptionYear>
+    <name>akka-springctx-scala-camel</name>
     <properties>
         <akka.version>2.4.8</akka.version>
         <scoverage.plugin.version>1.1.1</scoverage.plugin.version>
@@ -99,6 +101,37 @@
             <!--</execution>-->
             <!--</executions>-->
             <!--</plugin>-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.9</version>
+                <configuration>
+                    <licenseName>apache_v2</licenseName>
+                    <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                    <failOnMissingHeader>true</failOnMissingHeader>
+                    <failOnNotUptodateHeader>true</failOnNotUptodateHeader>
+                    <roots>
+                        <root>src/main/java</root>
+                        <root>src/test/java</root>
+                        <root>src/main/scala</root>
+                        <root>src/test/scala</root>
+                        <root>src/main/resources</root>
+                        <root>src/test/resources</root>
+                    </roots>
+                    <extraExtensions>
+                        <scala>java</scala>
+                    </extraExtensions>
+                    <organizationName>Puspendu Banerjee</organizationName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check-file-header</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -126,12 +159,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.scala-lang.modules/scala-xml_2.11 &ndash;&gt;-->
-        <!--<dependency>-->
-        <!--<groupId>org.scala-lang.modules</groupId>-->
-        <!--<artifactId>scala-xml_2.11</artifactId>-->
-        <!--<version>1.0.5</version>-->
-        <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/org.scala-lang.modules/scala-pickling_2.11 -->
         <dependency>
             <groupId>org.scala-lang.modules</groupId>
