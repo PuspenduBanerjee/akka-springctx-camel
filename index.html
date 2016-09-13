@@ -24,12 +24,21 @@
 
 <p>A library to bind akka on scala or java with spring and any spring supported framework, as camel, cxf etc. </p>
 
-<h1>
-<a id="-" class="anchor" href="#-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://codeship.com/projects/172426"> <img src="https://codeship.com/projects/bc619870-56ed-0134-7219-02458a2e1ff4/status?branch=master" alt="Codeship Status for PuspenduBanerjee/akka-springctx-camel"></a>
-</h1>
+<p><a href="https://codeship.com/projects/172426"> <img src="https://codeship.com/projects/bc619870-56ed-0134-7219-02458a2e1ff4/status?branch=master" alt="Codeship Status for PuspenduBanerjee/akka-springctx-camel"></a> <a href="http://www.apache.org/licenses/LICENSE-2.0.txt"> <img src="http://img.shields.io/:license-Apache%202-green.svg" alt="License"></a></p>
 
-<p>It's simple to use this library:
-Add repository: </p>
+<p>It's simple to use this library:</p>
+
+<p>Add artifact :</p>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+    &lt;<span class="pl-ent">groupId</span>&gt;com.github.PuspenduBanerjee&lt;/<span class="pl-ent">groupId</span>&gt;
+    &lt;<span class="pl-ent">artifactId</span>&gt;akka-springctx-camel&lt;/<span class="pl-ent">artifactId</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;0.0.5&lt;/<span class="pl-ent">version</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+
+<p>If you want to use latest artifact from master branch , use the following :</p>
+
+<p>Add repository: </p>
 
 <div class="highlight highlight-text-xml"><pre>   &lt;<span class="pl-ent">repositories</span>&gt;
          &lt;<span class="pl-ent">repository</span>&gt;
@@ -38,15 +47,7 @@ Add repository: </p>
          &lt;/<span class="pl-ent">repository</span>&gt;
     &lt;<span class="pl-ent">repositories</span>&gt;</pre></div>
 
-<p>then Add artifact :</p>
-
-<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
-    &lt;<span class="pl-ent">groupId</span>&gt;com.github.PuspenduBanerjee&lt;/<span class="pl-ent">groupId</span>&gt;
-    &lt;<span class="pl-ent">artifactId</span>&gt;akka-springctx-camel&lt;/<span class="pl-ent">artifactId</span>&gt;
-    &lt;<span class="pl-ent">version</span>&gt;0.0.1&lt;/<span class="pl-ent">version</span>&gt;
-&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
-
-<p>If you want to use latest artifact from master branch , use the following :</p>
+<p>Add Artifact:</p>
 
 <div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
     &lt;<span class="pl-ent">groupId</span>&gt;com.github.PuspenduBanerjee&lt;/<span class="pl-ent">groupId</span>&gt;
@@ -58,25 +59,25 @@ Add repository: </p>
 
 <div class="highlight highlight-source-scala"><pre>      <span class="pl-k">implicit</span> <span class="pl-k">val</span> <span class="pl-en">system</span> <span class="pl-k">=</span> <span class="pl-en">SpringContextActorSystemProvider</span>.create</pre></div>
 
-<p>Supports Multiple ActorSystem under isolated Spring ApplicationContexts, as siblings. </p>
+<p>Supports Multiple ActorSystem under isolated Spring ApplicationContexts, as siblings.</p>
 
-<div class="highlight highlight-source-scala"><pre>      <span class="pl-k">val</span> <span class="pl-en">actorSystems</span> <span class="pl-k">=</span> <span class="pl-c1">2551</span> to <span class="pl-c1">2562</span> map (x <span class="pl-k">=&gt;</span> {
-      <span class="pl-k">val</span> <span class="pl-en">as</span> <span class="pl-k">=</span> <span class="pl-en">SpringContextActorSystemProvider</span>.create(<span class="pl-s"><span class="pl-pds">"</span>ActorSystem<span class="pl-pds">"</span></span> <span class="pl-k">+</span> x,
-        <span class="pl-en">ConfigFactory</span>.parseString(<span class="pl-s"><span class="pl-pds">"</span>akka.remote.netty.tcp.port=<span class="pl-pds">"</span></span> <span class="pl-k">+</span> x).withFallback(<span class="pl-en">ConfigFactory</span>.load()))
-      <span class="pl-k">val</span> <span class="pl-en">echoActor</span> <span class="pl-k">=</span> as.actorOf(<span class="pl-en">Props</span>[<span class="pl-en">EchoActor</span>])
-      <span class="pl-k">val</span> <span class="pl-en">probe</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">TestProbe</span>(as, <span class="pl-s"><span class="pl-pds">"</span>probe<span class="pl-pds">"</span></span>)
-      <span class="pl-k">val</span> <span class="pl-en">msg</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Hi There<span class="pl-pds">"</span></span>
-      echoActor tell(msg, probe.ref)
-      probe.expectMsg(<span class="pl-c1">1000</span> millis, msg)
-      as
-    })</pre></div>
+<div class="highlight highlight-source-scala"><pre>            <span class="pl-k">val</span> <span class="pl-en">actorSystems</span> <span class="pl-k">=</span> <span class="pl-c1">2551</span> to <span class="pl-c1">2562</span> map (x <span class="pl-k">=&gt;</span> {
+            <span class="pl-k">val</span> <span class="pl-en">as</span> <span class="pl-k">=</span> <span class="pl-en">SpringContextActorSystemProvider</span>.create(<span class="pl-s"><span class="pl-pds">"</span>ActorSystem<span class="pl-pds">"</span></span> <span class="pl-k">+</span> x,
+              <span class="pl-en">ConfigFactory</span>.parseString(<span class="pl-s"><span class="pl-pds">"</span>akka.remote.netty.tcp.port=<span class="pl-pds">"</span></span> <span class="pl-k">+</span> x).withFallback(<span class="pl-en">ConfigFactory</span>.load()))
+            <span class="pl-k">val</span> <span class="pl-en">echoActor</span> <span class="pl-k">=</span> as.actorOf(<span class="pl-en">Props</span>[<span class="pl-en">EchoActor</span>])
+            <span class="pl-k">val</span> <span class="pl-en">probe</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">TestProbe</span>(as, <span class="pl-s"><span class="pl-pds">"</span>probe<span class="pl-pds">"</span></span>)
+            <span class="pl-k">val</span> <span class="pl-en">msg</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Hi There<span class="pl-pds">"</span></span>
+            echoActor tell(msg, probe.ref)
+            probe.expectMsg(<span class="pl-c1">1000</span> millis, msg)
+            as
+          })</pre></div>
 
 <p>Reference Project: <a href="https://github.com/PuspenduBanerjee/ScalaAkkaBlah">https://github.com/PuspenduBanerjee/ScalaAkkaBlah</a></p>
 
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/PuspenduBanerjee/akka-springctx-camel">akka-springctx-camel</a> is maintained by <a href="https://github.com/PuspenduBanerjee">Puspendu Banerjee</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/PuspenduBanerjee/akka-springctx-camel">akka-springctx-camel</a> is maintained by <a href="https://github.com/PuspenduBanerjee">PuspenduBanerjee</a>.</span>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a></span>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
 
     </section>
