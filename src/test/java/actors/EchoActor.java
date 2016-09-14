@@ -22,8 +22,12 @@ package actors; /**
  */
 
 import akka.actor.UntypedActor;
+import beans.PropertyPlaceHolderTestBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Scope;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -38,6 +42,6 @@ public class EchoActor extends UntypedActor {
 
     @Override
     public void onReceive(Object message) throws Exception {
-        getSender().tell(message, getSelf());
+        getSender().tell(message,getSelf());
     }
 }

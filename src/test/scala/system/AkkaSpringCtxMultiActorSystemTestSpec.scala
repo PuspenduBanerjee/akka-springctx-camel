@@ -1,3 +1,5 @@
+package system
+
 /*-
  * #%L
  * akka-springctx-scala-camel
@@ -17,19 +19,20 @@
  * limitations under the License.
  * #L%
  */
+import java.util.Properties
+
 import actors.EchoActor
 import akka.actor.Props
 import akka.testkit.TestProbe
 import com.typesafe.config.ConfigFactory
-import org.scalatest.FlatSpec
-import system.SpringContextActorSystemProvider
+import org.scalatest.{FlatSpec, Matchers}
 
 import scala.concurrent.duration._
 
 /**
   * Created by 258265 on 9/9/2016.
   */
-class AkkaSpringCtxMultiActorSystemTestSpec extends FlatSpec {
+class AkkaSpringCtxMultiActorSystemTestSpec extends FlatSpec with Matchers {
   behavior of "akka-springctx-camel"
   it should "be able to create multiple instances of ActorSystem" in {
     val actorSystems = 2551 to 2552 map (x => {
@@ -40,6 +43,25 @@ class AkkaSpringCtxMultiActorSystemTestSpec extends FlatSpec {
       val msg = "Hi There"
       echoActor tell(msg, probe.ref)
       probe.expectMsg(1000 millis, msg)
+      as
+    })
+
+    actorSystems.foreach(x => {
+      x.terminate()
+    })
+  }
+
+  it should "be able to evaluate spring & camel placeholder properties" in {
+    val actorSystems = 2551 to 2552 map (x => {
+      val additionalProperties=new Properties()
+      val instanceName="INSTANCE-"+x
+      additionalProperties.setProperty("instance.name",instanceName)
+      val as = SpringContextActorSystemProvider.create("ActorSystem" + x,
+        ConfigFactory.parseString("akka.remote.netty.tcp.port=" + x).withFallback(ConfigFactory.load())
+      ,additionalProperties)
+      val resolvedInstanceName=SpringExtension.SpringExtProvider.get(as)
+        .applicationContext.getBean("propertyPlaceHolderTestBean").toString
+      resolvedInstanceName should ===(instanceName)
       as
     })
 

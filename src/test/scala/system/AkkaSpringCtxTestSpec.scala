@@ -1,3 +1,5 @@
+package system
+
 /*-
  * #%L
  * akka-springctx-scala-camel
@@ -24,7 +26,6 @@ import akka.testkit.{ImplicitSender, TestKit}
 import org.apache.camel.ExchangePattern
 import org.apache.camel.builder.RouteBuilder
 import org.scalatest._
-import system.SpringContextActorSystemProvider
 import system.SpringExtension._
 
 /**
