@@ -35,7 +35,8 @@ object SpringContextActorSystemProvider {
   val rootContext = new GenericApplicationContext()
   rootContext.refresh()
 
-  def create(actorSystemName: String = "AkkaSpring",
+
+  def apply(actorSystemName: String = "AkkaSpring",
              actorSystemConfig: Config = ConfigFactory.load,
              additionalProperties: Properties=new Properties()) = {
     val ctx = new AnnotationConfigApplicationContext()
@@ -46,5 +47,15 @@ object SpringContextActorSystemProvider {
     ctx.refresh()
     ctx.getBean(classOf[ActorSystem])
   }
+
+
+
+  /**
+    * use #apply instead
+    */
+  @Deprecated
+  def create(actorSystemName: String = "AkkaSpring",
+            actorSystemConfig: Config = ConfigFactory.load,
+            additionalProperties: Properties=new Properties()) = apply(actorSystemName,actorSystemConfig,additionalProperties)
 
 }

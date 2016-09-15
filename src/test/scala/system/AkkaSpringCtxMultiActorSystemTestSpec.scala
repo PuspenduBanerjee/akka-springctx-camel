@@ -36,7 +36,7 @@ class AkkaSpringCtxMultiActorSystemTestSpec extends FlatSpec with Matchers {
   behavior of "akka-springctx-camel"
   it should "be able to create multiple instances of ActorSystem" in {
     val actorSystems = 2551 to 2552 map (x => {
-      val as = SpringContextActorSystemProvider.create("ActorSystem" + x,
+      val as = SpringContextActorSystemProvider("ActorSystem" + x,
         ConfigFactory.parseString("akka.remote.netty.tcp.port=" + x).withFallback(ConfigFactory.load()))
       val echoActor = as.actorOf(Props[EchoActor])
       val probe = new TestProbe(as, "probe")
@@ -56,7 +56,7 @@ class AkkaSpringCtxMultiActorSystemTestSpec extends FlatSpec with Matchers {
       val additionalProperties=new Properties()
       val instanceName="INSTANCE-"+x
       additionalProperties.setProperty("instance.name",instanceName)
-      val as = SpringContextActorSystemProvider.create("ActorSystem" + x,
+      val as = SpringContextActorSystemProvider("ActorSystem" + x,
         ConfigFactory.parseString("akka.remote.netty.tcp.port=" + x).withFallback(ConfigFactory.load())
       ,additionalProperties)
       val resolvedInstanceName=SpringExtension.SpringExtProvider.get(as)

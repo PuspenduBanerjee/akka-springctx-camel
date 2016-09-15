@@ -31,7 +31,7 @@ import system.SpringExtension._
 /**
   * Created by puspendu on 9/6/16.
   */
-class AkkaSpringCtxTestSpec extends TestKit(SpringContextActorSystemProvider.create("TestAkkaSpring"))
+class AkkaSpringCtxTestSpec extends TestKit(SpringContextActorSystemProvider("TestAkkaSpring"))
   with FlatSpecLike
   with ImplicitSender with Matchers with BeforeAndAfterAll {
 
