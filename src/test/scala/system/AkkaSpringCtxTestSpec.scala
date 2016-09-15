@@ -55,8 +55,6 @@ class AkkaSpringCtxTestSpec extends TestKit(SpringContextActorSystemProvider("Te
     val response = camel.context.createProducerTemplate().sendBody("direct:testEP", ExchangePattern.InOut, msg)
     msg should ===(response)
   }
-
-
 }
 
 
