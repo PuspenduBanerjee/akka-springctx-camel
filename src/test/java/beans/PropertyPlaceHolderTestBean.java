@@ -1,8 +1,8 @@
 /*-
  * #%L
- * akka-springctx-scala-camel
+ * akka-springctx-camel
  * %%
- * Copyright (C) 2016 PuspenduBanerjee
+ * Copyright (C) 2016 Puspendu Banerjee
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +17,15 @@
  * limitations under the License.
  * #L%
  */
-package system
+package beans;
 
-import akka.actor.ExtendedActorSystem
-import akka.camel.ContextProvider
-import org.apache.camel.spring.SpringCamelContext
-import system.SpringExtension.SpringExtProvider
 
-/**
-  * Created by Puspendu Banerjee on 9/6/2016.
-  */
-class SpringCamelContextProvider extends ContextProvider {
-  override def getContext(system: ExtendedActorSystem): SpringCamelContext = new SpringCamelContext(SpringExtProvider.get(system).applicationContext)
+import org.springframework.beans.factory.annotation.Value;
+
+public class PropertyPlaceHolderTestBean{
+    @Value("${instance.name:'UnDefined'}")
+    String instanceName;
+    public String toString(){
+        return instanceName;
+    }
 }

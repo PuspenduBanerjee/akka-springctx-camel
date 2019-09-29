@@ -26,6 +26,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 
 import static system.SpringExtension.SpringExtProvider;
@@ -35,6 +37,7 @@ import static system.SpringExtension.SpringExtProvider;
  */
 @Configuration
 @ImportResource("classpath*:**/applicationContext.xml")
+@PropertySource(value="classpath*:**/applicationContext.properties",ignoreResourceNotFound=true)
 class AppConfiguration {
 
     // the application context is needed to initialize the Akka Spring Extension
@@ -53,6 +56,11 @@ class AppConfiguration {
         ActorSystem system = ActorSystem.create(name, config);
         SpringExtProvider.get(system).initialize(applicationContext);
         return system;
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 
 }

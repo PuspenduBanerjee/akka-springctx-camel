@@ -19,6 +19,8 @@
  */
 package system
 
+import java.util.Properties
+
 import akka.actor.ActorSystem
 import com.typesafe.config.{Config, ConfigFactory}
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -33,14 +35,27 @@ object SpringContextActorSystemProvider {
   val rootContext = new GenericApplicationContext()
   rootContext.refresh()
 
-  def create(name: String = "AkkaSpring", config: Config = ConfigFactory.load) = {
+
+  def apply(actorSystemName: String = "AkkaSpring",
+             actorSystemConfig: Config = ConfigFactory.load,
+             additionalProperties: Properties=new Properties()) = {
     val ctx = new AnnotationConfigApplicationContext()
     ctx.setParent(rootContext)
-    val propertySource = new ActorSystemProperties(name, config);
+    val propertySource = new ActorSystemProperties(actorSystemName, actorSystemConfig,additionalProperties);
     ctx.getEnvironment.getPropertySources.addLast(propertySource)
     ctx.scan("system", "actors")
     ctx.refresh()
     ctx.getBean(classOf[ActorSystem])
   }
+
+
+
+  /**
+    * use #apply instead
+    */
+  @Deprecated
+  def create(actorSystemName: String = "AkkaSpring",
+            actorSystemConfig: Config = ConfigFactory.load,
+            additionalProperties: Properties=new Properties()) = apply(actorSystemName,actorSystemConfig,additionalProperties)
 
 }
