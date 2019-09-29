@@ -2,7 +2,7 @@ title: akka-springctx-camel
 description: A library to bind akka on scala or java with spring and any spring supported framework, as camel, cxf etc.
 google_analytics: 
 show_downloads: true
-theme: jekyll-theme-tactile
+theme: jekyll-theme-architect
 
 gems:
   - jekyll-mentions
