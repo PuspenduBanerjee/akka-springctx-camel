@@ -1,7 +1,7 @@
 # akka-springctx-camel
 A library to bind akka on scala or java with spring and any spring supported framework, as camel, cxf etc. 
 
-[ ![Codeship Status for PuspenduBanerjee/akka-springctx-camel](https://codeship.com/projects/bc619870-56ed-0134-7219-02458a2e1ff4/status?branch=master)](https://codeship.com/projects/172426) [ ![License](http://img.shields.io/:license-Apache%202-green.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
+[![Codeship Status for PuspenduBanerjee/akka-springctx-camel](https://app.codeship.com/projects/b6ed5d40-c490-0137-46b9-121d43ce1c3d/status?branch=master)](https://app.codeship.com/projects/366725) [ ![License](http://img.shields.io/:license-Apache%202-green.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 It's simple to use this library:
 
@@ -10,21 +10,13 @@ Add artifact :
 <dependency>
     <groupId>com.github.PuspenduBanerjee</groupId>
     <artifactId>akka-springctx-camel</artifactId>
-    <version>0.0.5</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
 If you want to use latest artifact from master branch , use the following :
 
-Add repository: 
-```xml
-   <repositories>
-         <repository>
-             <id>jitpack.io</id>
-             <url>https://jitpack.io</url>
-         </repository>
-    <repositories>
-```
+
     
 Add Artifact:
 ```xml
