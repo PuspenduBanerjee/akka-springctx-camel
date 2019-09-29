@@ -10,21 +10,13 @@ Add artifact :
 <dependency>
     <groupId>com.github.PuspenduBanerjee</groupId>
     <artifactId>akka-springctx-camel</artifactId>
-    <version>0.0.5</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
 If you want to use latest artifact from master branch , use the following :
 
-Add repository: 
-```xml
-   <repositories>
-         <repository>
-             <id>jitpack.io</id>
-             <url>https://jitpack.io</url>
-         </repository>
-    <repositories>
-```
+
     
 Add Artifact:
 ```xml
