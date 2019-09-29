@@ -30,7 +30,7 @@ import org.scalatest.{FlatSpec, Matchers}
 import scala.concurrent.duration._
 
 /**
-  * Created by 258265 on 9/9/2016.
+  * Created by Puspendu on 9/9/2016.
   */
 class AkkaSpringCtxMultiActorSystemTestSpec extends FlatSpec with Matchers {
   behavior of "akka-springctx-camel"
